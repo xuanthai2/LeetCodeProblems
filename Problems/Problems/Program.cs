@@ -223,3 +223,32 @@ int MinimumOneBitOperations(int n)
     }
     return result;
 }
+
+
+
+//1266.Minimum Time Visiting All Points
+int MinTimeToVisitAllPoints(int[][] points)
+{
+    int count = 0;
+    for (int i = 0; i < points.GetLength(0) - 1; i++)
+    {
+        //var startP = points[i];
+        //var endP = points[i+1];
+        //int xDiff = Math.Abs(startP[0] - endP[0]);
+        //int yDiff = Math.Abs(startP[1] - endP[1]);
+        //int diagonalMove = Math.Min(xDiff, yDiff);
+        //int remainingVerticalMove = Math.Abs(yDiff - diagonalMove); 
+        //int remainingHorizontallMove = Math.Abs(xDiff - diagonalMove);
+        //count += diagonalMove + remainingHorizontallMove + remainingVerticalMove;
+
+        var startP = points[i];
+        var endP = points[i + 1];
+
+        int xDiff = Math.Abs(endP[0] - startP[0]);
+        int yDiff = Math.Abs(endP[1] - startP[1]);
+
+        // The maximum of xDiff and yDiff represents the diagonal movement
+        count += Math.Max(xDiff, yDiff);
+    }
+    return count;
+}
