@@ -1,14 +1,8 @@
 ﻿
 
-//ELCA Vietnam
-using Problems;
-using System.Collections.Immutable;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-using System.Xml.XPath;
 
+using Problems;
+//Get top stock
 void GetTopStock(/*string[] stocks, float[,] prices*/)
 {
 string[] stocks = {"A" , "B" , "C" };
@@ -252,3 +246,43 @@ int MinTimeToVisitAllPoints(int[][] points)
     }
     return count;
 }
+
+
+
+//2264. Largest 3-Same-Digit Number in String
+string LargestGoodInteger(string num)
+{
+    var result = "";
+    for (int i = 0; i <= num.Length - 3; i++)
+    {
+        if (num[i] == num[i+1] && num[i] == num[i+2]) 
+        {
+            if(result == "" || String.Compare(num.Substring(i,3),result) > 0)
+            {
+                result = num.Substring(i,3);
+            }
+        }
+    }
+    return result;
+}
+
+
+
+//1. Two Sum
+int[] TwoSum(int[] nums, int target)
+{
+    Dictionary<int, int> result = new Dictionary<int, int>();
+    for (int i = 0; i < nums.Length; i++)
+    {
+        if(result.ContainsKey(target - nums[i]))
+        {
+            return new int[] { result[target - nums[i]], i };
+        }
+        if (!result.ContainsKey(nums[i]))
+        {
+            result[nums[i]] = i;
+        }
+    }
+    return Array.Empty<int>();
+}
+
