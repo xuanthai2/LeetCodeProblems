@@ -286,3 +286,62 @@ int[] TwoSum(int[] nums, int target)
     return Array.Empty<int>();
 }
 
+
+
+//1688. Count of Matches in Tournament
+int NumberOfMatches(int n)
+{
+    //int result = 0;
+    //while (n>1)
+    //{
+    //    if(n % 2 == 0)
+    //    {
+    //        n /= 2;
+    //        result += n;
+    //    }
+    //    else
+    //    {
+    //        n = (n - 1) / 2 + 1;
+    //        result += n - 1;
+    //    }
+    //}
+    //return result;
+
+    return n - 1;
+}
+
+
+
+//2549. Count Distinct Numbers on Board
+int DistinctIntegers(int n)
+{
+    return n != 1 ? n - 1 : 1;
+}
+
+
+
+//1929. Concatenation of Array
+int[] GetConcatenation(int[] nums)
+{
+    var result = nums.ToList();
+    for (int i = 0; i < nums.Length; i++)
+    {
+        result.Add(nums[i]);
+    }
+    return result.ToArray();
+}
+
+
+
+//1859. Sorting the Sentence
+string SortSentence(string s) {
+    string[] sToArray = s.Split(" ");
+    Dictionary<int, string> resultMap = new Dictionary<int,string>();
+    foreach (var item in sToArray)
+    {
+        var indicate = item[item.Length - 1] - '0';
+        var word = item.Substring(0, item.Length - 1);
+        resultMap[indicate] = word;
+    }
+    return String.Join(" ", resultMap.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
+}
