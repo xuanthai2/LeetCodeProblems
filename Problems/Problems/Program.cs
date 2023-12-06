@@ -345,3 +345,24 @@ string SortSentence(string s) {
     }
     return String.Join(" ", resultMap.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
 }
+
+
+
+//1716. Calculate Money in Leetcode Bank
+int TotalMoney(int n)
+{
+    var total = 0;
+    int weelyBounus = 0;
+    int dailyMoney = 1;
+    for (int i = 1; i <= n; i++)
+    {
+        total += weelyBounus + dailyMoney;
+        dailyMoney++;
+        if (i % 7 == 0)
+        {
+            weelyBounus++;
+            dailyMoney = 1;
+        }
+    }
+    return total;
+}
