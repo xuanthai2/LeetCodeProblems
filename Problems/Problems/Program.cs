@@ -2,6 +2,7 @@
 
 
 using Problems;
+using System.Numerics;
 //Get top stock
 void GetTopStock(/*string[] stocks, float[,] prices*/)
 {
@@ -365,4 +366,20 @@ int TotalMoney(int n)
         }
     }
     return total;
+}
+
+
+
+//1903. Largest Odd Number in String
+string LargestOddNumber(string num)
+{
+    for (int i = num.Length; i > 0; i--)
+    {
+        var a = (int)num[i - 1];
+        if (Extension.GetInstance().CheckOdd(a))
+        {
+            return num.Substring(0,i);
+        }
+    }
+    return "";
 }

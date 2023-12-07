@@ -37,6 +37,16 @@ namespace Problems
             Array.Sort(result.ToArray());
             return result.ToArray();
         }
-
+        public bool CheckOdd(int num)
+        {
+            if (num % 2 == 1)
+            {
+                return true;
+            }
+            else
+            { 
+                return false; 
+            }
+        }
     }
 }
