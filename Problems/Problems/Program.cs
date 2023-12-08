@@ -383,3 +383,24 @@ string LargestOddNumber(string num)
     }
     return "";
 }
+
+
+
+//606. Construct String from Binary Tree
+//string Tree2str(TreeNode root)
+//{
+//    if (root == null)
+//    {
+//        return "";
+//    }
+//    var result = root.val.ToString();
+//    if (root.left != null)
+//    {
+//        result += "(" + Tree2str(root.left) + ")";
+//    }
+//    if (root.right != null)
+//    {
+//        result += "(" + Tree2str(root.right) + ")";
+//    }
+//    return result;
+//}
