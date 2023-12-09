@@ -426,3 +426,45 @@ string LargestOddNumber(string num)
 //    }
 //    return result;
 //}
+
+
+
+//34. Find First and Last Position of Element in Sorted Array
+int[] SearchRange(int[] nums, int target)
+{
+    if(nums.Where(x => x == target).Count() < 1)
+    {
+        return new int[] { -1, -1 };
+    }
+    //Dictionary<int,int> result = new();
+    //for (int i = 0; i < nums.Length; i++)
+    //{
+    //    if (nums[i] == target)
+    //    {
+    //        result[i] = i;
+    //    }
+    //}
+    //if(result.Any())
+    //{
+    //    return new int[] { result.Values.Min(), result.Values.Max() };
+    //}
+    //else
+    //{
+    //    return new int[] { -1, -1 };
+    //}    
+
+    int a = -1;
+    int b = -1;
+    for (int i = 0; i < nums.Length; i++)
+    {
+        if (nums[i] == target)
+        {
+            if(a == -1)
+            {
+                a = i;
+            }
+            b = i;
+        }
+    }
+    return new int[] { a, b };
+}
