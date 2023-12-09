@@ -404,3 +404,25 @@ string LargestOddNumber(string num)
 //    }
 //    return result;
 //}
+
+
+
+//94. Binary Tree Inorder Traversal
+//IList<int> InorderTraversal(TreeNode root)
+//{
+//    List<int> result = new List<int>();
+//    if (root == null)
+//    {
+//        return result;
+//    }
+//    if(root.left != null)
+//    {
+//        result.AddRange(InorderTraversal(root.left));
+//    }
+//    result.Add(root.val);
+//    if (root.right != null)
+//    {
+//        result.AddRange(InorderTraversal(root.right));
+//    }
+//    return result;
+//}
