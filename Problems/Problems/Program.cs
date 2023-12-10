@@ -468,3 +468,51 @@ int[] SearchRange(int[] nums, int target)
     }
     return new int[] { a, b };
 }
+
+
+// on going with greedy algorithm
+//45. Jump Game II
+//int Jump(int[] nums)
+//{
+//    int count = 0;
+//    int left = nums[0];
+//    int right = nums[nums.Length - 1];
+//    Dictionary<int, int> result = new Dictionary<int, int>();
+
+//    while(left < right)
+//    {
+//        if (nums[0] + nums[left] < )
+//    }
+//}
+
+
+
+//867. Transpose Matrix
+int[][] Transpose(int[][] matrix)
+{
+    var newCol = matrix.Max(x => x.Length);
+    Dictionary<int, List<int>> result = new Dictionary<int, List<int>>();
+    int[][] returnResult = new int[newCol][];
+    for (int i = 0; i < newCol; i++)
+    {
+        for (int j = 0; j < matrix.Length; j++)
+        {
+            if(result.ContainsKey(i))
+            {
+                result[i].Add(matrix[j][i]);
+            }
+            else
+            {
+                result[i] = new List<int>
+                {
+                    matrix[j][i]
+                };
+            }
+        }
+    }
+    for (int i = 0; i < result.Keys.Count; i++)
+    {
+        returnResult[i] = result[i].ToArray();
+    }
+    return returnResult;
+}
