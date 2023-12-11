@@ -34,8 +34,9 @@ namespace Problems
             {
                 result.Add(i);
             }
-            Array.Sort(result.ToArray());
-            return result.ToArray();
+            var returnArray = result.ToArray();
+            Array.Sort(returnArray);
+            return returnArray;
         }
         public bool CheckOdd(int num)
         {

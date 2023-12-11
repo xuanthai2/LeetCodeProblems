@@ -9,11 +9,11 @@ void GetTopStock(/*string[] stocks, float[,] prices*/)
 string[] stocks = {"A" , "B" , "C" };
 float[,] prices =
 {
-    {10,2,3 }, 
+    {1,2,3 }, 
     {3,4,5 },
     {4,5,6 },
     {5,6,7 }
-    // 3.25 4.25 5.25
+    //3.25 4.25 5.25
 };
 
 Dictionary<String, float> stockValue = new Dictionary<String, float>();
@@ -515,4 +515,19 @@ int[][] Transpose(int[][] matrix)
         returnResult[i] = result[i].ToArray();
     }
     return returnResult;
+}
+
+
+
+//1287. Element Appearing More Than 25% In Sorted Array
+int FindSpecialInteger(int[] arr)
+{
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] == arr[i + arr.Length/4])
+        {
+            return arr[i];
+        }
+    }
+    return 0;
 }
