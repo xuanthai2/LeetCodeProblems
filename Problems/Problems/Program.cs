@@ -531,3 +531,28 @@ int FindSpecialInteger(int[] arr)
     }
     return 0;
 }
+
+
+
+//1464. Maximum Product of Two Elements in an Array
+int MaxProduct(int[] nums) {
+    //LinQ
+    //var firstMax = nums.Max();
+    //var indexFirstMax = Array.IndexOf(nums, firstMax);
+    //nums = nums.Where((val, index) => index != indexFirstMax).ToArray();
+    //var secondMax = nums.Max();
+    return (nums.Max() - 1) * (nums.Where((value, index) => index != Array.IndexOf(nums, nums.Max())).Max() - 1);
+
+    //Sort Array
+    //Array.Sort(nums);
+    //return (nums[nums.Length - 1] - 1) * (nums[nums.Length - 2] - 1);
+
+    //ToList
+    //var first = 0;
+    //var second = 0;
+    //var list = nums.ToList();
+    //first = nums.Max();
+    //list.Remove(first);
+    //second = nums.Max();
+    //return (first - 1) * (second - 1);
+}
