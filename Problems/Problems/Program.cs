@@ -556,3 +556,34 @@ int MaxProduct(int[] nums) {
     //second = nums.Max();
     //return (first - 1) * (second - 1);
 }
+
+
+
+//1582. Special Positions in a Binary Matrix
+int NumSpecial(int[][] mat)
+{
+    int m = mat.Length;
+    int n = mat[0].Length;
+    int[] rowCount = new int[m];
+    int[] colCount = new int[n];
+    int count = 0;
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            rowCount[i] += mat[i][j];
+            colCount[j] += mat[i][j];
+        }
+    }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (mat[i][j] == 1 && rowCount[i] == 1 && colCount[j] == 1)
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+}
