@@ -2,6 +2,7 @@
 
 
 using Problems;
+using System;
 using System.Numerics;
 //Get top stock
 void GetTopStock(/*string[] stocks, float[,] prices*/)
@@ -586,4 +587,34 @@ int NumSpecial(int[][] mat)
         }
     }
     return count;
+}
+
+
+
+//2482. Difference Between Ones and Zeros in Row and Column
+int[][] OnesMinusZeros(int[][] grid)
+{
+    int m = grid.Length;
+    int n = grid[0].Length;
+    int[] oneRowCount = new int[m];
+    int[] oneColCount = new int[n];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            oneRowCount[i] += grid[i][j];
+            oneColCount[j] += grid[i][j];
+        }
+    }
+    int[][] result = new int[m][];
+    for (int i = 0; i < m; i++)
+    {
+        var a = new List<int>();
+        for (int j = 0; j < n; j++)
+        {
+            a.Add(oneRowCount[i] + oneColCount[j] - (n - oneColCount[j]) - (m- oneRowCount[i]));
+        }
+        result[i] = a.ToArray();
+    }
+    return result;
 }
