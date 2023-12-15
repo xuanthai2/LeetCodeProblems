@@ -3,6 +3,8 @@
 
 using Problems;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Numerics;
 //Get top stock
 void GetTopStock(/*string[] stocks, float[,] prices*/)
@@ -617,4 +619,21 @@ int[][] OnesMinusZeros(int[][] grid)
         result[i] = a.ToArray();
     }
     return result;
+}
+
+
+
+//1436. Destination City
+string DestCity(IList < IList<string> > paths) {
+    Dictionary<string,string> result = new Dictionary<string,string>();
+    foreach (var item in paths)
+    {
+        result[item[0]] = item[1];
+    }
+    string cur = paths[0][0];
+    while (result.ContainsKey(cur))
+    {
+        cur = result[cur];
+    }
+    return cur;
 }
