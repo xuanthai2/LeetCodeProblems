@@ -637,3 +637,36 @@ string DestCity(IList < IList<string> > paths) {
     }
     return cur;
 }
+
+
+
+//242. Valid Anagram
+bool IsAnagram(string s, string t)
+{
+    if(s.Length != t.Length)
+    {
+        return false;
+    }
+    //List<char> result = new List<char>();
+    //List<char> result2 = new List<char>();
+    //for (int i = 0; i < s.Length; i++)
+    //{
+    //    result.Add(s[i]);
+    //}
+    //result.Sort();
+    //for (int i = 0; i < s.Length; i++)
+    //{
+    //    result2.Add(t[i]);
+    //}
+    //result2.Sort();
+    //if(result.SequenceEqual(result2))
+    //{
+    //    return true;
+    //}
+    //return false;
+    char[] sArray = s.ToCharArray();
+    char[] tArray = t.ToCharArray();
+    Array.Sort(sArray);
+    Array.Sort(tArray);
+    return Enumerable.SequenceEqual(sArray, tArray);
+}
