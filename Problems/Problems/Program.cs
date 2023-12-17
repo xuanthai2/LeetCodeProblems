@@ -670,3 +670,112 @@ bool IsAnagram(string s, string t)
     Array.Sort(tArray);
     return Enumerable.SequenceEqual(sArray, tArray);
 }
+
+
+
+//2353. Design a Food Rating System
+//private Dictionary<string, Dictionary<string, int>> ratings; // cuisine -> food -> rating
+//private Dictionary<string, string> highestRated; // cuisine -> highest rated food
+//public FoodRatings(string[] foods, string[] cuisines, int[] initialRatings)
+//{
+//    ratings = new();
+//    highestRated = new();
+//    for (int i = 0; i < foods.Length; i++)
+//    {
+//        string food = foods[i];
+//        string cuisine = cuisines[i];
+//        int rating = initialRatings[i];
+//        if (!ratings.ContainsKey(cuisine))
+//        {
+//            ratings[cuisine] = new Dictionary<string, int>();
+//        }
+//        ratings[cuisine][food] = rating;
+//        if (!highestRated.ContainsKey(cuisine) || rating > ratings[cuisine][highestRated[cuisine]])
+//        {
+//            highestRated[cuisine] = food;
+//        }
+//        else if (rating == ratings[cuisine][highestRated[cuisine]] && string.Compare(food, highestRated[cuisine]) < 0)
+//        {
+//            highestRated[cuisine] = food;
+//        }
+//    }
+//}
+//public void ChangeRating(string food, int newRating)
+//{
+//    foreach (var cuisine in ratings.Keys)
+//    {
+//        if (ratings[cuisine].ContainsKey(food))
+//        {
+//            ratings[cuisine][food] = newRating;
+//            UpdateHighestRated(cuisine, food, newRating);
+//            break;
+//        }
+//    }
+//}
+//public string HighestRated(string cuisine)
+//{
+//    return highestRated[cuisine];
+//}
+//private void UpdateHighestRated(string cuisine, string food, int newRating)
+//{
+//    var max = ratings[cuisine].Values.Max();
+//    if (highestRated[cuisine] == food)
+//    {
+//        if (newRating < max)
+//        {
+//            highestRated[cuisine] = ratings[cuisine].FirstOrDefault(x => x.Value == max).Key;
+//            var listMaxKey = ratings[cuisine].Where(x => x.Value == max).ToList();
+//            if (lexicographically(highestRated[cuisine], listMaxKey[0].Key) > 0)
+//            {
+//                highestRated[cuisine] = listMaxKey[0].Key;
+//            }
+//            foreach (var item in listMaxKey)
+//            {
+//                if (lexicographically(highestRated[cuisine], item.Key) > 0)
+//                {
+//                    highestRated[cuisine] = item.Key;
+//                }
+//            }
+//            return;
+//        }
+//        else
+//        {
+//            return;
+//        }
+//    }
+//    if (highestRated[cuisine] != food)
+//    {
+//        var currentHighestRating = ratings[cuisine][highestRated[cuisine]];
+//        if (newRating < currentHighestRating)
+//        {
+//            return;
+//        }
+//        if (newRating > currentHighestRating)
+//        {
+//            highestRated[cuisine] = food;
+//        }
+//        if (newRating == currentHighestRating)
+//        {
+//            var listMaxKey = ratings[cuisine].Where(x => x.Value == newRating).ToList();
+//            foreach (var item in listMaxKey)
+//            {
+//                if (lexicographically(highestRated[cuisine], item.Key) > 0)
+//                {
+//                    highestRated[cuisine] = item.Key;
+//                }
+//            }
+//        }
+//    }
+//}
+//private int lexicographically(string x, string y)
+//{
+//    int minLength = Math.Min(x.Length, y.Length);
+//    for (int i = 0; i < minLength; i++)
+//    {
+//        if (x[i] != y[i])
+//        {
+//            return x[i].CompareTo(y[i]);
+//        }
+//    }
+//    return x.Length.CompareTo(y.Length);
+//}
