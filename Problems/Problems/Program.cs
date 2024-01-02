@@ -779,3 +779,30 @@ bool IsAnagram(string s, string t)
 //    }
 //    return x.Length.CompareTo(y.Length);
 //}
+
+
+
+//2610. Convert an Array Into a 2D Array With Conditions
+IList<IList<int>> FindMatrix(int[] nums)
+{
+    List<IList<int>> result = new List<IList<int>>();
+    List<int> tempList = new List<int>();
+    tempList = nums.ToList();
+    while(tempList.Count > 0)
+    {
+        Dictionary<int, int> tempDictionary = new();
+        for (int i = 0; i < tempList.Count; i++)
+        {
+            if (!tempDictionary.ContainsKey(tempList[i]))
+            {
+                tempDictionary[tempList[i]] = tempList[i];
+            }
+        }
+        foreach (int i in tempDictionary.Values)
+        {
+            tempList.Remove(i);
+        }
+        result.Add(tempDictionary.Keys.ToList());
+    }
+    return result;
+}
