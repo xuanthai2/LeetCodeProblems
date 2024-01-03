@@ -806,3 +806,25 @@ IList<IList<int>> FindMatrix(int[] nums)
     }
     return result;
 }
+
+
+
+//2125. Number of Laser Beams in a Bank
+int NumberOfBeams(string[] bank)
+{
+    int total = 0;
+    List<int> result = new List<int>();
+    foreach (var item in bank)
+    {
+        int n = item.Count(x => x == '1');
+        if(n > 0)
+        {
+            result.Add(n);
+        }
+    }
+    for (int i = 0; i < result.Count - 1; i++)
+    {
+        total += (result[i] * result[i + 1]);
+    }
+    return total;
+}
