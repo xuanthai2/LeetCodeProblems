@@ -828,3 +828,49 @@ int NumberOfBeams(string[] bank)
     }
     return total;
 }
+
+
+
+//2870. Minimum Number of Operations to Make Array Empty
+
+int MinOperations(int[] nums)
+{
+    int count = 0;
+    Dictionary<int, int> result = new();
+    for(int i = 0; i < nums.Length; i++)
+    {
+        if (!result.ContainsKey(nums[i]))
+        {
+            result[nums[i]] = 1;
+        }
+        else
+        {
+            result[nums[i]]++;
+        }
+    }
+    foreach (var item in result)
+    {
+        if(item.Value == 1)
+        {
+            return -1;
+        }
+        if (item.Value % 3 == 0)
+        {
+            count += item.Value / 3;
+            continue;
+        }
+        if (item.Value % 3 == 1)
+        {
+            count += (item.Value / 3 - 1) + 2;
+            continue;
+        }
+        if(item.Value % 3 == 2)
+        {
+            count += item.Value / 3 + 1;
+        }
+    }
+    return count;
+}
+
+int[] nums = { 14, 12, 14, 14, 12, 14, 14, 12, 12, 12, 12, 14, 14, 12, 14, 14, 14, 12, 12 };
+Console.WriteLine(MinOperations(nums));
