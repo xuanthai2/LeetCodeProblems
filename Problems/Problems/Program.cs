@@ -872,5 +872,27 @@ int MinOperations(int[] nums)
     return count;
 }
 
-int[] nums = { 14, 12, 14, 14, 12, 14, 14, 12, 12, 12, 12, 14, 14, 12, 14, 14, 14, 12, 12 };
-Console.WriteLine(MinOperations(nums));
+
+
+//300. Longest Increasing Subsequence
+int LengthOfLIS(int[] nums)
+{
+    int maxLength = 1;
+    int[]dp = new int[nums.Length];
+    for (int i = 0; i < nums.Length; i++)
+    {
+        dp[i] = 1;
+        for (int j = 0; j < i; j++)
+        {
+            if (nums[i] > nums[j])
+            {
+                dp[i] = Math.Max(dp[i], dp[j] + 1);
+            }
+        }
+        maxLength = Math.Max(maxLength, dp[i]);
+    }
+    return maxLength;
+}
+
+int[] nums1 = { 10, 9, 2, 5, 3, 7, 101, 18 };
+Console.WriteLine("Length of LIS 1: " + LengthOfLIS(nums1));
