@@ -894,5 +894,18 @@ int LengthOfLIS(int[] nums)
     return maxLength;
 }
 
-int[] nums1 = { 10, 9, 2, 5, 3, 7, 101, 18 };
-Console.WriteLine("Length of LIS 1: " + LengthOfLIS(nums1));
+
+
+//938. Range Sum of BST
+//int RangeSumBST(TreeNode root, int low, int high)
+//{
+//    if (root == null)
+//    {
+//        return 0;
+//    }
+//    int currentVal = (root.val >= low && root.val <= high) ? root.val : 0;
+//    int leftVal = RangeSumBST(root.left, low, high);
+//    int rightVal = RangeSumBST(root.right, low, high);
+
+//    return currentVal + leftVal + rightVal;
+//}
