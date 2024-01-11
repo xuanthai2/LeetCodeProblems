@@ -912,6 +912,37 @@ int LengthOfLIS(int[] nums)
 
 
 
+//872. Leaf-Similar Trees
+//bool LeafSimilar(TreeNode root1, TreeNode root2)
+//{
+//    List<int> a = new();
+//    List<int> b = new();
+//    GetLeafArray(root1, a);
+//    GetLeafArray(root2, b);
+//    return a.SequenceEqual(b);
+//}
+
+//List<int> GetLeafArray(TreeNode root, List<int> result)
+//{
+//    if(root.left != null)
+//    {
+//        GetLeafArray(root.left, result);
+//    }
+//    if(root.right != null)
+//    {
+//        GetLeafArray(root.right, result);
+//    }
+//    if (root.left == null && root.right == null)
+//    {
+//        result.Add(root.val);
+//    }
+
+//    return result;
+//}
+//}
+
+
+
 //1026. Maximum Difference Between Node and Ancestor
 //int MaxAncestorDiff(TreeNode root)
 //{
