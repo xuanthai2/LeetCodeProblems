@@ -909,3 +909,43 @@ int LengthOfLIS(int[] nums)
 
 //    return currentVal + leftVal + rightVal;
 //}
+
+
+
+//1026. Maximum Difference Between Node and Ancestor
+//int MaxAncestorDiff(TreeNode root)
+//{
+//    return FindMaxDifference(root, root.val, root.val);
+//}
+//int FindMaxDifference(TreeNode node, int ancestorMin, int ancestorMax)
+//{
+//    if(node == null) return 0;
+//    var left = FindMaxDifference(node.left, ancestorMin, ancestorMax);
+//    int currentMax = Math.Max(Math.Abs(node.val - ancestorMin), Math.Abs(node.val - ancestorMax));
+//    ancestorMin = Math.Min(ancestorMin, node.val);
+//    ancestorMax = Math.Max(ancestorMax, node.val);
+//    var right = FindMaxDifference(node.right, ancestorMin, ancestorMax);
+//    return Math.Max(currentMax, Math.Max(left, right));
+//}
+
+
+
+////783. Minimum Distance Between BST Nodes
+//int MinDiffInBST(TreeNode root)
+//{
+//    List<int> list = new();
+//    MakeList(root, list);
+//    int min = int.MaxValue;
+//    for (int i = 0; i < list.Count - 1; i++)
+//    {
+//        if (Math.Abs(list[i] - list[i + 1]) < min) min = Math.Abs(list[i] - list[i + 1]);
+//    }
+//    return min;
+//}
+//void MakeList(TreeNode root, List<int> list)
+//{
+//    if(root == null) return;
+//    MakeList(root.left, list);
+//    list.Add(root.val);
+//    MakeList(root.right, list);
+//}
