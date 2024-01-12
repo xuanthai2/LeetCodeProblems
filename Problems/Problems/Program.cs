@@ -980,3 +980,24 @@ int LengthOfLIS(int[] nums)
 //    list.Add(root.val);
 //    MakeList(root.right, list);
 //}
+
+
+
+//1704. Determine if String Halves Are Alike
+bool HalvesAreAlike(string s)
+{
+    string a = s.Substring(0,s.Length / 2);
+    string b = s.Substring(s.Length / 2, s.Length / 2);
+    int aCount = 0;
+    int bCount = 0;
+    char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+    foreach (var item in vowels)
+    {
+        if (a.Contains(item)) aCount += a.Count(x => x == item);
+        if (b.Contains(item)) bCount += b.Count(x => x == item);
+    }
+    if(aCount == bCount) return true;
+    return false;
+}
+
+Console.WriteLine(HalvesAreAlike("textbook"));
