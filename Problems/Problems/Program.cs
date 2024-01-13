@@ -1000,4 +1000,27 @@ bool HalvesAreAlike(string s)
     return false;
 }
 
-Console.WriteLine(HalvesAreAlike("textbook"));
+
+
+//1347. Minimum Number of Steps to Make Two Strings Anagram
+int MinSteps(string s, string t)
+{
+    char[] sArray = s.ToCharArray();
+    char[] tArray = t.ToCharArray();
+    Array.Sort(sArray);
+    Array.Sort(tArray);
+    if(sArray.SequenceEqual(tArray)) return 0;
+    SortedDictionary<char, int> sDic = new();
+    for (int i = 0; i < s.Length; i++)
+    {
+        if (!sDic.ContainsKey(s[i])) sDic[s[i]] = 1;
+        else sDic[s[i]]++;
+    }
+    for (int i = 0; i < t.Length; i++)
+    {
+        if (sDic.ContainsKey(t[i])) sDic[t[i]]--;
+    }
+    return sDic.Where(x => x.Value > 0).Sum(x => x.Value);
+}
+
+Console.WriteLine(MinSteps("aaaab", "baaaa"));
