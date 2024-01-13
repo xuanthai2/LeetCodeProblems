@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using System.Xml.Linq;
 //Get top stock
 void GetTopStock(/*string[] stocks, float[,] prices*/)
 {
@@ -1023,4 +1024,84 @@ int MinSteps(string s, string t)
     return sDic.Where(x => x.Value > 0).Sum(x => x.Value);
 }
 
-Console.WriteLine(MinSteps("aaaab", "baaaa"));
+
+
+//9. Palindrome Number
+bool IsPalindrome(int x) {
+    int a = 0;
+    int b = x;
+    while (b > 0)
+    {
+        a = a * 10 + b % 10;
+        b /= 10;
+    }
+    return a == x;
+}
+
+
+
+//13. Roman to Integer
+int RomanToInt(string s)
+{
+    Dictionary<string, int> dict = new()
+    {
+        {"I",1 },
+        {"V",5 },
+        {"X",10},
+        {"L",50},
+        {"C",100},
+        {"D",500},
+        {"M",1000},
+        {"IV",4},
+        {"IX",9},
+        {"XL",40},
+        {"XC",90},
+        {"CD",400},
+        {"CM",900},
+    };
+    int result = 0;
+    s += " ";
+    for(int i = 0; i < s.Length - 1; i++)
+    {
+        var a = s[i].ToString();
+        var b = s[i].ToString() + s[i + 1].ToString();
+        if (dict.ContainsKey(b))
+        {
+            result += dict[b];
+            i++;
+            continue;
+        }
+        if (dict.ContainsKey(a))
+        {
+            result += dict[a];
+        }
+    }
+    return result;
+}
+
+
+
+//21. Merge Two Sorted Lists
+ListNode MergeTwoLists(ListNode list1, ListNode list2)
+{
+    List<int> result = new();
+    if(list1 != null) GetNode(list1, result);
+    if(list2 != null) GetNode(list2, result);
+    result.Sort();
+    ListNode dummyHead = new ListNode();
+    ListNode currentNode = dummyHead;
+    for (int i = 0; i < result.Count; i++)
+    {
+        currentNode.next = new ListNode(result[i]);
+        currentNode = currentNode.next;
+    }
+    return dummyHead.next;
+}
+void GetNode(ListNode node, List<int> list)
+{
+    while (node != null)
+    {
+        list.Add(node.val);
+        node = node.next;
+    }
+}
