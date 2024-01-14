@@ -1105,3 +1105,58 @@ void GetNode(ListNode node, List<int> list)
         node = node.next;
     }
 }
+
+
+
+//1657. Determine if Two Strings Are Close
+bool CloseStrings(string word1, string word2)
+{
+    //if(word1.Length !=  word2.Length) return false;
+    //SortedDictionary<string, int> dict1 = new();
+    //SortedDictionary<string, int> dict2 = new();
+    //for (int i = 0; i < word1.Length; i++)
+    //{
+    //    var s = word1[i].ToString();
+    //    if (!dict1.ContainsKey(s))
+    //    {
+    //        dict1[s] = 1;
+    //    }
+    //    else dict1[s]++;
+    //}
+    //for (int i = 0; i < word2.Length; i++)
+    //{
+    //    var s = word2[i].ToString();
+    //    if (!dict2.ContainsKey(s))
+    //    {
+    //        dict2[s] = 1;
+    //    }
+    //    else dict2[s]++;
+    //}
+    //var a = dict1.Keys.Order().ToArray();
+    //var b = dict2.Keys.Order().ToArray();
+    //var c = dict1.Values.Order().ToArray();
+    //var d = dict2.Values.Order().ToArray();
+    //return a.SequenceEqual(b) && c.SequenceEqual(d);
+
+    int[] freq1 = new int[26];
+    int[] freq2 = new int[26];
+    foreach (var item in word1.ToCharArray())
+    {
+        freq1[item - 'a']++;
+    }
+    foreach (var item in word2.ToCharArray())
+    {
+        freq2[item - 'a']++;
+    }
+    for(int i = 0; i < 26; i++)
+    {
+        if ((freq1[i] == 0 && freq2[i] != 0) || (freq1[i] != 0 && freq2[i] == 0)) return false;
+    }
+    Array.Sort(freq1);
+    Array.Sort(freq2);
+    for (int i = 0; i < 26; i++)
+    {
+        if (freq1[i] != freq2[i]) return false;
+    }
+    return true;
+}
