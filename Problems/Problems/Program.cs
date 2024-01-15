@@ -1160,3 +1160,41 @@ bool CloseStrings(string word1, string word2)
     }
     return true;
 }
+
+
+
+//2225. Find Players With Zero or One Losses
+IList<IList<int>> FindWinners(int[][] matches)
+{
+    SortedDictionary<int, int> loseOne = new();
+    List<int> list0Lose = new();
+    List<int> List1neLose = new();
+    for (int i = 0; i < matches.Length; i++)
+    {
+        if (!loseOne.ContainsKey(matches[i][1]))
+        {
+            loseOne[matches[i][1]] = 1;
+        }
+        else loseOne[matches[i][1]]++;
+    }
+    var a = loseOne.Where(x => x.Value < 2);
+    foreach (var item in a)
+    {
+        List1neLose.Add(item.Key);
+    }
+    for (int i = 0; i < matches.Length; i++)
+    {
+        if (!loseOne.ContainsKey(matches[i][0]))
+        {
+            list0Lose.Add(matches[i][0]);
+        }
+    }
+    list0Lose.Sort();
+    List<IList<int>> result = new()
+    {
+        list0Lose.Distinct().ToList(),
+        List1neLose
+    };
+    return result;
+}
+
