@@ -73,4 +73,43 @@ namespace Problems
             this.next = next;
         }
     }
+
+
+
+    //380. Insert Delete GetRandom O(1)
+    public class RandomizedSet
+    {
+        public Dictionary<int, int> dict = new();
+        public Random random = new();
+        public List<int> list = new();
+        public RandomizedSet() {}
+        public bool Insert(int val)
+        {
+            if (dict.ContainsKey(val)) return false;
+            else
+            {
+                list.Add(val);
+                dict[val] = list.Count - 1;
+                return true;
+            }
+        }
+        public bool Remove(int val)
+        {
+            if (!dict.ContainsKey(val)) return false;
+            else 
+            {
+                int lastVal = list[list.Count - 1];
+                list[list.Count - 1] = val;
+                list[dict[val]] = lastVal;
+                dict[lastVal] = dict[val];
+                dict.Remove(val);
+                list.RemoveAt(list.Count - 1);
+                return true;
+            }
+        }
+        public int GetRandom()
+        {
+            return list[random.Next(0, list.Count)];
+        }
+    }
 }
