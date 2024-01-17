@@ -1200,4 +1200,14 @@ IList<IList<int>> FindWinners(int[][] matches)
 
 
 
-//
+//1207. Unique Number of Occurrences
+bool UniqueOccurrences(int[] arr)
+{
+    Dictionary<int, int> result = new();
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (!result.ContainsKey(arr[i])) result[arr[i]] = 1;
+        else result[arr[i]]++;
+    }
+    var a = result.Values.ToList();
+}
