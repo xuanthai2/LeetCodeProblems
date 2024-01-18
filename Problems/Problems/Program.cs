@@ -1210,4 +1210,21 @@ bool UniqueOccurrences(int[] arr)
         else result[arr[i]]++;
     }
     var a = result.Values.ToList();
+    return a.Count == a.Distinct().Count();
+}
+
+
+
+//70. Climbing Stairs
+int ClimbStairs(int n)
+{
+    int[] a = new int[n+1];
+    return StairsCases(n, a);
+}
+int StairsCases(int n, int[] memo)
+{
+    if (memo[n] != 0) return memo[n];
+    if (n <= 2) return n;
+    memo[n] = StairsCases(n - 1, memo) + StairsCases(n - 2, memo);
+    return memo[n];
 }
