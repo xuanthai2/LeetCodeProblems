@@ -1228,3 +1228,61 @@ int StairsCases(int n, int[] memo)
     memo[n] = StairsCases(n - 1, memo) + StairsCases(n - 2, memo);
     return memo[n];
 }
+
+
+
+//198. House Robber
+int Rob(int[] nums)
+{
+    //var num = nums.Length;
+    //if (num == 0)
+    //{
+    //    return 0;
+    //}
+    //if (num == 1)
+    //{
+    //    return nums[0];
+    //}
+    //int[] dp = new int[num];
+    //dp[0] = nums[0];
+    //dp[1] = Math.Max(nums[0], nums[1]);
+    //for (int i = 2; i < num; i++)
+    //{
+    //    dp[i] = Math.Max(dp[i - 1], dp[i - 2] + nums[i]);
+    //}
+    //return dp[num - 1];
+    int rob1 = 0, rob2 = 0, temp;
+    foreach (var item in nums)
+    {
+        temp = Math.Max(rob1 + item, rob2);
+        rob1 = rob2;
+        rob2 = temp;
+    }
+    return rob2;
+}
+
+
+
+//645. Set Mismatch
+int[] FindErrorNums(int[] nums)
+{
+    Array.Sort(nums);
+    var length = nums.Length;
+    var realSum = 0;
+    for(int i = 0; i < length; i++)
+    {
+        realSum+= nums[i];
+    }
+    var expectedSum = (length * (length + 1)) / 2;
+    var dupNumb = 0;
+    for (int i = 1; i < length; i++)
+    {
+        if (nums[i] == nums[i-1])
+        {
+            dupNumb = nums[i];
+            break;
+        }
+    }
+    var realNumb = -(realSum - dupNumb - expectedSum);
+    return new int[] { dupNumb, realNumb };
+}
