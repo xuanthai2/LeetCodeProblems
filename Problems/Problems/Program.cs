@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
 using System.Xml.Linq;
+using static Problems.RandomizedSet;
 //Get top stock
 void GetTopStock(/*string[] stocks, float[,] prices*/)
 {
@@ -1285,4 +1286,77 @@ int[] FindErrorNums(int[] nums)
     }
     var realNumb = -(realSum - dupNumb - expectedSum);
     return new int[] { dupNumb, realNumb };
+    //int first = nums.GroupBy(x => x).Where(g => g.Count() == 2).Select(x => x.Key).First();
+    //int second = Enumerable.Range(1, nums.Length).Except(nums).First();
+
+    //return new int[] { first, second };
+}
+
+
+//1913. Maximum Product Difference Between Two Pairs
+int MaxProductDifference(int[] nums)
+{
+    //var length = nums.Length;
+    //Array.Sort(nums);
+    //return (nums[length - 1] * nums[length - 2]) - (nums[0] * nums[1]);
+    var biggestNumb = 0;
+    var secondbiggestNumb = 0;
+    var smallestNumb = int.MaxValue;
+    var secondsmallestNumb = int.MaxValue;
+    for (int i = 0; i < nums.Length; i++)
+    {
+        if (nums[i] > biggestNumb)
+        {
+            secondbiggestNumb = biggestNumb;
+            biggestNumb = nums[i];
+        }
+        else if (nums[i] > secondbiggestNumb) secondbiggestNumb = nums[i];
+        if (nums[i] < smallestNumb)
+        {
+            secondsmallestNumb = smallestNumb;
+            smallestNumb = nums[i];
+        }
+        else if (nums[i] < secondsmallestNumb) secondsmallestNumb = nums[i];
+    }
+    return biggestNumb * secondbiggestNumb - smallestNumb * secondsmallestNumb;
+}
+
+
+
+//2706. Buy Two Chocolates
+int BuyChoco(int[] prices, int money)
+{
+    //var cheap = int.MaxValue;
+    //var cheapest = int.MaxValue;
+    //for (int i = 0; i < prices.Length; i++)
+    //{
+    //    if (prices[i] < cheapest)
+    //    {
+    //        cheap = cheapest;
+    //        cheapest = prices[i];
+    //    }
+    //    else if (prices[i] < cheap) cheap = prices[i];
+    //}
+    //var leftover = money - (cheap + cheapest);
+    //return (leftover) < 0 ? money : leftover;
+    Array.Sort(prices);
+    var a = prices[0] + prices[1];
+    if (a > money) return money;
+    else return money - a;
+}
+
+
+
+//1239. Maximum Length of a Concatenated String with Unique Characters
+int MaxLength(IList<string> arr)
+{
+    return MaxLengthRecursive(arr);
+}
+int MaxLengthRecursive(IList<string> arr, int i = 0, string s = "")
+{
+    HashSet<char> hs = new HashSet<char>(s);
+    if (hs.Count != s.Length) return 0;
+    hs = null;
+    if (i == arr.Count) return s.Length;
+    return Math.Max(MaxLengthRecursive(arr, i + 1, s + arr[i]), MaxLengthRecursive(arr, i + 1, s));
 }
