@@ -111,15 +111,57 @@ namespace Problems
         {
             return list[random.Next(0, list.Count)];
         }
-        public enum Weekdays
+    }
+    public enum Weekdays
+    {
+        Monday = 1,
+        Tuesday = 2,
+        Wednesday = 4,
+        Thursday = 8,
+        Friday = 16,
+        Saturday = 32,
+        Sunday = 64,
+    }
+    public class MyQueue
+    {
+        Stack<int> stack1 = new Stack<int>();
+        Stack<int> stack2 = new Stack<int>();
+        public MyQueue()
         {
-            Monday = 1,
-            Tuesday = 2,
-            Wednesday = 4,
-            Thursday = 8,
-            Friday = 16,
-            Saturday = 32,
-            Sunday = 64,
+
+        }
+        public void Push(int x)
+        {
+            stack1.Push(x);
+        }
+
+        public int Pop()
+        {
+            if (Empty()) return -1;
+            Ensure();
+            return stack2.Pop();
+        }
+
+        public int Peek()
+        {
+            if (Empty()) return -1;
+            Ensure();
+            return stack2.Peek();
+        }
+
+        public bool Empty()
+        {
+            return stack2.Count == 0 && stack1.Count == 0;
+        }
+        public void Ensure()
+        {
+            if(stack2.Count == 0)
+            {
+                while(stack1.Count > 0)
+                {
+                    stack2.Push(stack1.Pop());
+                }
+            }
         }
     }
 }

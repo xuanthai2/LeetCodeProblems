@@ -1360,3 +1360,74 @@ int MaxLengthRecursive(IList<string> arr, int i = 0, string s = "")
     if (i == arr.Count) return s.Length;
     return Math.Max(MaxLengthRecursive(arr, i + 1, s + arr[i]), MaxLengthRecursive(arr, i + 1, s));
 }
+
+
+
+//1457. Pseudo-Palindromic Paths in a Binary Tree
+int PseudoPalindromicPaths(TreeNode root)
+{
+    return PseudoPalindromicPathsRecursive(root, 0);
+}
+int PseudoPalindromicPathsRecursive(TreeNode root,int count)
+{
+    if (root == null)
+    {
+        return 0;
+    }
+    if (root.left == null && root.right == null)
+    {
+        return 1;
+    }
+    if (root.left != null)
+    {
+        count++;
+        PseudoPalindromicPathsRecursive(root.left, count);
+        if (root.left == null) 
+        {
+            if(count % 2 == 1)
+            {
+                count = 0;
+            }
+        }
+    }
+    if(root.right != null)
+    {
+        count++;
+        PseudoPalindromicPathsRecursive(root.right, count);
+        if (root.right == null)
+        {
+            if (count % 2 == 1)
+            {
+                count = 0;
+            }
+        }
+    }
+    var left = PseudoPalindromicPathsRecursive(root.left, count);
+    var right = PseudoPalindromicPathsRecursive(root.right, count);
+    return left + right;
+}
+
+
+
+//1481. Least Number of Unique Integers after K Removals
+int FindLeastNumOfUniqueInts(int[] arr, int k)
+{
+    Dictionary<int, int> result = new();
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (result.ContainsKey(arr[i]))
+        {
+            result[arr[i]]++;
+        }
+        else { result[arr[i]] = 1; }
+    }
+    var sorted = result.Values.Order().ToArray();
+    int count = 0;
+    for (int i = 0; i < sorted.Count(); i++)
+    {
+        k -= sorted[i];
+        if (k < 0) count++;
+    }
+    return count;
+}
+
