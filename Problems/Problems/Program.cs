@@ -1431,3 +1431,17 @@ int FindLeastNumOfUniqueInts(int[] arr, int k)
     return count;
 }
 
+
+
+//231. Power of Two
+bool IsPowerOfTwo(int n)
+{
+    return n > 0 && (n & n-1) == 0;
+    //return Math.Ceiling(Math.Log2(n)) == Math.Floor(Math.Log2(n));
+    //for (int i = 0; i < n; i++)
+    //{
+    //    if (Math.Pow(2, i) > n) return false;
+    //    if (n == Math.Pow(2, i)) return true;
+    //}
+    //return false;
+}
