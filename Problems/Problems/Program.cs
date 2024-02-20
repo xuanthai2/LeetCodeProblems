@@ -1445,3 +1445,29 @@ bool IsPowerOfTwo(int n)
     //}
     //return false;
 }
+
+
+
+//268. Missing Number
+int MissingNumber(int[] nums)
+{
+    int n = nums.Length;
+    int actualSum = n*(n+1)/2;
+    int sum = 0;
+    foreach (var item in nums)
+    {
+        sum += item;
+    }
+    return actualSum - sum;
+    //if (nums.Length == 1 && nums[0] == 1) return 0;
+    //if (nums.Length == 1 && nums[0] == 0) return 1;
+    //Array.Sort(nums);
+    //if (nums.Length == 1) return 0;
+    //var n = nums.Length;
+    //if (nums[nums.Length - 1] < n) return n;
+    //for (int i = 1; i < nums.Length; i++)
+    //{
+    //    if (nums[i] != nums[i - 1] + 1) return nums[i] - 1;
+    //}
+    //return 0;
+}
