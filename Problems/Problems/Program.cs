@@ -1471,3 +1471,21 @@ int MissingNumber(int[] nums)
     //}
     //return 0;
 }
+
+
+
+//201. Bitwise AND of Numbers Range
+int RangeBitwiseAnd(int left, int right)
+{
+    if (left < 0) return 0;
+    int shift = 0;
+    while(left < right)
+    {
+        left >>= 1;
+        right >>= 1;
+        shift++;
+    }
+    return left << shift;
+}
+
+Console.WriteLine(RangeBitwiseAnd(5, 7));
