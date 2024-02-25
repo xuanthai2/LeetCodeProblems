@@ -1478,6 +1478,7 @@ int MissingNumber(int[] nums)
 int RangeBitwiseAnd(int left, int right)
 {
     if (left < 0) return 0;
+    if (left == right) return left;
     int shift = 0;
     while(left < right)
     {
@@ -1488,4 +1489,58 @@ int RangeBitwiseAnd(int left, int right)
     return left << shift;
 }
 
-Console.WriteLine(RangeBitwiseAnd(5, 7));
+
+
+//997. Find the Town Judge
+int FindJudge(int n, int[][] trust)
+{
+    var result = new int[n+1];
+
+    foreach (var item in trust)
+    {
+        result[item[0]]--;
+        result[item[1]]++;
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        if (result[i] == n - 1) return i;
+    }
+    return -1;
+    //Dictionary<int, int> result = new();
+    //for (int i = 1 ; i <= n; i++)
+    //{
+    //    result[i] = 0;   
+    //}
+    //foreach (var item in trust)
+    //{
+    //    if (result.ContainsKey(item[1])) result[item[1]]++;
+    //    if (result.ContainsKey(item[0])) result[item[0]]--;
+    //}
+    //var a = result.Where(x => x.Value == n-1);
+    //if (a.Any()) return a.First().Key;
+    //else return -1;
+}
+
+
+
+//2108. Find First Palindromic String in the Array
+string FirstPalindrome(string[] words)
+{
+    foreach (var word in words)
+    {
+        if(CheckWordIfPalindromic(word)) return word;
+    }
+    return "";
+}
+
+bool CheckWordIfPalindromic(string word)
+{
+    var left = 0;
+    var right = word.Length - 1;
+    if (word[left] != word[right]) return false;
+    while (left < right)
+    {
+        if (word[left++] != word[right--]) return false;
+    }
+    return true;
+}
