@@ -4,6 +4,7 @@
 using Problems;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Numerics;
 using System.Xml.Linq;
@@ -1554,4 +1555,49 @@ bool IsSameTree(TreeNode p, TreeNode q)
     if (p == null || q == null) return false;
     if (p.val != q.val) return false;
     return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
+}
+
+
+
+//543. Diameter of Binary Tree
+//int DiameterOfBinaryTree(TreeNode root)
+//{
+
+//}
+
+
+
+//2864. Maximum Odd Binary Number
+string MaximumOddBinaryNumber(string s)
+{
+    int count0 = 0, count1 = 0;
+    foreach (var word in s)
+    {
+        if(word - '0' == 1) count1++;
+        if(word - '0' == 0) count0++;
+    }
+    return new String('1', count1 - 1) + new String('0', count0) + "1";
+    //Dictionary<string,int> result = new();
+    //foreach(var word in s)
+    //{
+    //    var a = word.ToString();
+    //    if (result.ContainsKey(a)) result[a]++;
+    //    else result[a] = 1;
+    //}
+    //string resultt = "";
+    //if (result.ContainsKey("1") && result["1"] > 1)
+    //{
+    //    for (int i = 0; i < result["1"] - 1; i++)
+    //    {
+    //        resultt += "1";
+    //    }
+    //}
+    //if (result.ContainsKey("0") &&result["0"] > 0) 
+    //{
+    //    for (int i = 0; i < result["0"]; i++)
+    //    {
+    //        resultt += "0";
+    //    }
+    //}
+    //return resultt += "1";
 }
