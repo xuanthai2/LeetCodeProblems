@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using static Problems.RandomizedSet;
 //Get top stock
@@ -1600,4 +1601,57 @@ string MaximumOddBinaryNumber(string s)
     //    }
     //}
     //return resultt += "1";
+}
+
+
+
+//19. Remove Nth Node From End of List
+ListNode RemoveNthFromEnd(ListNode head, int n)
+{
+    ListNode temp = new ListNode(0);
+    temp.next = head;
+    ListNode first = temp;
+    ListNode second = temp;
+
+    for (int i = 0; i <= n; i++)
+    {
+        first = first.next;
+    }
+    while(first != null)
+    {
+        first = first.next;
+        second = second.next;
+    }
+    second.next = second.next.next;
+    return temp.next;
+}
+
+
+
+//141. Linked List Cycle
+bool HasCycle(ListNode head)
+{
+    //hare and tortoise algorithm
+    if (head == null || head.next == null) return false;
+    var hare = head;
+    var tortoise = head;
+    while (tortoise != null && tortoise.next != null)
+    {
+        hare = hare.next;
+        tortoise = tortoise.next.next;
+        if (hare == tortoise) return true;
+    }
+    return false;
+    // using a Dictionary to store node, check if last node connect to any
+    //if (head == null || head.next == null) return false;
+    //Dictionary<ListNode, int> cycle = new();
+    //var dummy = head.next;
+    //while (dummy != null)
+    //{
+    //    cycle[dummy] = dummy.val;
+    //    if (dummy.next == null) break;
+    //    dummy = dummy.next;
+    //    if (cycle.ContainsKey(dummy)) return true;
+    //}
+    //return false;
 }
