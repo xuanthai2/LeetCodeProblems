@@ -1655,3 +1655,42 @@ bool HasCycle(ListNode head)
     //}
     //return false;
 }
+
+
+
+//876. Middle of the Linked List
+ListNode MiddleNode(ListNode head)
+{
+    if (head.next == null) return head;
+    var hare = head;
+    var tortoise = head;
+    while(hare != null && hare.next != null)
+    {
+        tortoise = tortoise.next;
+        hare = hare.next.next;
+    }
+    return tortoise;
+    //if (head.next == null) return head;
+    //int i = 1, j = 1;
+    //var dummy = head;
+    //var dummy2 = head;
+    //while(dummy!= null)
+    //{
+    //    dummy = dummy.next;
+    //    i++;
+    //}
+    //while (dummy2 != null)
+    //{
+    //    dummy2 = dummy2.next;
+    //    j++;
+    //    if(i % 2 == 0)
+    //    {
+    //        if (j == i / 2) return dummy2;
+    //    }
+    //    else if(i % 2 == 1)
+    //    {
+    //        if (j == (i / 2) + 1) return dummy2;
+    //    }
+    //}
+    //return dummy2;
+}
