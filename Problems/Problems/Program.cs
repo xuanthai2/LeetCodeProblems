@@ -1694,3 +1694,23 @@ ListNode MiddleNode(ListNode head)
     //}
     //return dummy2;
 }
+
+
+
+//3005. Count Elements With Maximum Frequency
+int MaxFrequencyElements(int[] nums)
+{
+    Dictionary<int, int> dict = new();
+    foreach (var item in nums)
+    {
+        if(dict.ContainsKey(item)) dict[item]++;
+        else dict[item] = 1;
+    }
+    var a = dict.Values.Max();
+    int result = 0;
+    foreach (var item in dict)
+    {
+        if (item.Value == a) result+=item.Value;
+    }
+    return result;
+}
