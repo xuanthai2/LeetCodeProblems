@@ -8,6 +8,7 @@ using System.Diagnostics.Metrics;
 using System.IO;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Xml.Linq;
 using static Problems.RandomizedSet;
 //Get top stock
@@ -1714,3 +1715,71 @@ int MaxFrequencyElements(int[] nums)
     }
     return result;
 }
+
+
+
+//791. Custom Sort String
+string CustomSortString(string order, string s)
+{
+    Dictionary<char, int> frequency = new Dictionary<char, int>();
+
+    // Count the frequency of characters in string s
+    foreach (char c in s)
+    {
+        if (frequency.ContainsKey(c))
+            frequency[c]++;
+        else
+            frequency[c] = 1;
+    }
+
+    StringBuilder result = new StringBuilder();
+
+    // Append characters in order as per the custom order
+    foreach (char c in order)
+    {
+        if (frequency.ContainsKey(c))
+        {
+            result.Append(c, frequency[c]);
+            frequency.Remove(c);
+        }
+    }
+
+    // Append remaining characters from s that are not in order
+    foreach (var kvp in frequency)
+    {
+        result.Append(kvp.Key, kvp.Value);
+    }
+
+    return result.ToString();
+    //Dictionary<char, int> dict2 = new();
+    //string result = "";
+    //foreach (var item in s.ToCharArray())
+    //{
+    //    if (dict2.ContainsKey(item)) dict2[item]++;
+    //    else dict2[item] = 1;
+
+    //}
+    //foreach (var item in order.ToCharArray())
+    //{
+    //    if (dict2.ContainsKey((char)item))
+    //    {
+    //        result += item;
+    //        dict2[(char)item]--;
+    //        if (dict2[(char)item] < 1) dict2.Remove((char)item);
+    //        else
+    //        {
+    //            for (int i = 0; i < dict2[(char)item]; i++)
+    //            {
+    //                result += item;
+    //            }
+    //            dict2.Remove((char)item);
+    //        }
+    //    }
+    //}
+    //foreach (var item in dict2)
+    //{
+    //    result += item.Key;
+    //}
+    //return result;
+}
+CustomSortString("bcafg", "abcd");
