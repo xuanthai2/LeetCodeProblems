@@ -1782,4 +1782,47 @@ string CustomSortString(string order, string s)
     //}
     //return result;
 }
-CustomSortString("bcafg", "abcd");
+
+
+
+//678. Valid Parenthesis String
+bool CheckValidString(string s)
+{
+    if (s == "") return true;
+    if (s.Length < 1) return false;
+    Stack<int> pStack = new();
+    Stack<int> sStack = new();
+    for (int i = 0; i < s.Length; i++)
+    {
+        if (s[i] == '(')
+        {
+            pStack.Push(i);
+        }
+        else if (s[i] == '*')
+        {
+            sStack.Push(i);
+        }
+        else
+        {
+            if (pStack.Count > 0)
+            {
+                pStack.Pop();
+            }
+            else if (sStack.Count > 0)
+            {
+                sStack.Pop();
+            }
+            else return false;
+        }
+    }
+    while(pStack.Count > 0)
+    {
+        if(sStack.Count == 0 || pStack.Pop() > sStack.Pop())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+CheckValidString("((((()(()()()*()(((((*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()");
