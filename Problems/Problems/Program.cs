@@ -1825,4 +1825,58 @@ bool CheckValidString(string s)
     return true;
 }
 
-CheckValidString("((((()(()()()*()(((((*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()");
+
+
+//1137. N-th Tribonacci Number
+int Tribonacci(int n)
+{
+    int[] memo = new int[n + 1];
+    return TribonacciRecursion(n, memo);
+}
+int TribonacciRecursion(int n, int[] memo)
+{
+    if (memo[n] != 0) return memo[n];
+    if (n <= 0) return 0;
+    if (n <= 2) return 1;
+    memo[n] = TribonacciRecursion(n - 1, memo) + TribonacciRecursion(n - 2, memo) + TribonacciRecursion(n - 3, memo);
+    return memo[n];
+}
+
+
+
+//509. Fibonacci Number
+int Fib(int n)
+{
+    if (n == 0) return 0;
+    int[] memo = new int[n + 1];
+    return FibRecursion(n, memo);
+}
+int FibRecursion(int n, int[] memo)
+{
+    if (memo[n] != 0) return memo[n];
+    if (n <= 2) return 1;
+    memo[n] = FibRecursion(n - 1, memo) + FibRecursion(n - 2, memo);
+    return memo[n];
+}
+
+
+
+//58. Length of Last Word
+int LengthOfLastWord(string s)
+{
+    int count = 0;
+    int n = s.Length - 1;
+    if (!s.Contains(' '))
+    {
+        return n + 1;
+    }
+    for (int i = n; i >= 0; i--)
+    {
+        if (s[i] == ' ' && count == 0)
+            continue;
+        if (s[i] == ' ' && count > 0)
+            return count;
+        else count++;
+    }
+    return count;
+}
