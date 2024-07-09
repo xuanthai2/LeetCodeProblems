@@ -1880,3 +1880,59 @@ int LengthOfLastWord(string s)
     }
     return count;
 }
+
+
+
+//165. Compare Version Numbers
+int CompareVersion(string version1, string version2)
+{
+    int num = Math.Max(version1.Length, version2.Length);
+    var ver1 = new string[num];
+    var ver2 = new string[num];
+    int a = 0;
+    foreach (var item in version1.Split('.'))
+    {
+        ver1[a] = item;
+        a++;
+    }
+    int b = 0;
+    foreach (var item in version2.Split('.'))
+    {
+        ver2[b] = item;
+        b++;
+    }
+    for(int i = 0; i < num; i++)
+    {
+        if (ver1[i] == null) ver1[i] = "0";
+        if (ver2[i] == null) ver2[i] = "0";
+        if (ver1[i] == ver2[i]) continue;
+        else
+        {
+           if (Int32.Parse(ver1[i]) < Int32.Parse(ver2[i])) return -1;
+           if (Int32.Parse(ver1[i]) > Int32.Parse(ver2[i])) return 1;
+        }
+    }
+    return 0;
+}
+
+
+
+//1701. Average Waiting Time
+double AverageWaitingTime(int[][] customers)
+{
+    double finishTimeTh = customers[0][0];
+    double result = 0;
+    for (int i = 0; i < customers.Length; i++)
+    {
+        if(finishTimeTh >= customers[i][0] )
+        {
+            finishTimeTh += customers[i][1];
+        }
+        else
+        {
+            finishTimeTh = customers[i][0] + customers[i][1];
+        }
+        result += finishTimeTh - customers[i][0];
+    }
+    return ((result/customers.Length)*100000)/100000;
+}
