@@ -1936,3 +1936,24 @@ double AverageWaitingTime(int[][] customers)
     }
     return ((result/customers.Length)*100000)/100000;
 }
+
+
+
+//1598. Crawler Log Folder
+int MinOperations1598(string[] logs)
+{
+    int result = 0;
+    for (int i = 0; i < logs.Length; i++)
+    {
+        if (logs[i] == "../")
+        {
+            if (result > 0)
+                result--;
+        }
+        else if (logs[i] != "./")
+        {
+            result++;
+        }
+    }
+    return result;
+}
