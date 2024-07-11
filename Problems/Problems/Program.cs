@@ -3,11 +3,13 @@
 
 using Problems;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
 using static Problems.RandomizedSet;
@@ -1953,6 +1955,35 @@ int MinOperations1598(string[] logs)
         else if (logs[i] != "./")
         {
             result++;
+        }
+    }
+    return result;
+}
+
+
+
+//1190. Reverse Substrings Between Each Pair of Parentheses
+string ReverseParentheses(string s)
+{
+    var result = "";
+    Stack<string> stack = new();
+    foreach (var c in s)
+    {
+        if (c == '(')
+        {
+            stack.Push(result);
+            result = "";
+        }
+        else if (c == ')')
+        {
+            var temp = Extension.GetInstance().ReverseString(result);
+            result = "";
+            result += stack.Pop();
+            result += temp;
+        }
+        else
+        {
+            result += c;
         }
     }
     return result;

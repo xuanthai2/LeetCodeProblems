@@ -17,6 +17,12 @@ namespace Problems
             }
             return instance;
         }
+        public string ReverseString(string s)
+        {
+            char[] arr = s.ToCharArray();
+            Array.Reverse(arr);
+            return new string(arr);
+        }
         public int ReverseInt(int num)
         {
             int result = 0;
