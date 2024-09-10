@@ -11,6 +11,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using static Problems.RandomizedSet;
 //Get top stock
@@ -1988,3 +1989,58 @@ string ReverseParentheses(string s)
     }
     return result;
 }
+
+
+
+//1717. Maximum Score From Removing Substrings
+int MaximumGain(string s, int x, int y)
+{
+    if (x < y)
+        return MaximumGainMini(ref s, 'b', 'a', y) + MaximumGainMini(ref s, 'a', 'b', x);
+    else
+        return MaximumGainMini(ref s, 'a', 'b', x) + MaximumGainMini(ref s, 'b', 'a', y);
+}
+int MaximumGainMini(ref string s, char first, char second, int score)
+{
+    int result = 0;
+    Stack<char> stack = new();
+    foreach (var c in s)
+    {
+        if (c == second && stack.Count > 0 && stack.Peek() == first)
+        {
+            stack.Pop();
+            result += score;
+        }
+        else { stack.Push(c); }
+    }
+    var temp = new Stack<char>();
+    while (stack.Count > 0)
+    {
+        temp.Push(stack.Pop());
+    }
+    s = string.Join("", temp);
+    return result;
+}
+
+
+
+//2807. Insert Greatest Common Divisors in Linked List
+ListNode InsertGreatestCommonDivisors(ListNode head)
+{
+    if(head.next == null)
+    {
+        return head;
+    }
+    var currentNode = head;
+    while(currentNode != null && currentNode.next != null)
+    {
+        ListNode newNode = new ListNode();
+        newNode.val = Extension.GetInstance().GCD(currentNode.val, currentNode.next.val);
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
+        currentNode = currentNode.next.next;
+    }
+    return head;
+}
+
+Console.WriteLine(Extension.GetInstance().GCD(6, 10));
