@@ -2043,4 +2043,58 @@ ListNode InsertGreatestCommonDivisors(ListNode head)
     return head;
 }
 
-Console.WriteLine(Extension.GetInstance().GCD(6, 10));
+
+
+//1310. XOR Queries of a Subarray
+int[] XorQueries(int[] arr, int[][] queries)
+{
+    //List<int> result = new List<int>();
+    //int i = 0;
+    //int left = 0;
+    //int right = 0;
+    //foreach (var item in queries)
+    //{
+    //    left = item[0];
+    //    right = item[1];
+    //    if(left==right)
+    //    {
+    //        result.Add(arr[left]);
+    //        continue;
+    //    }
+    //    int temp = 0;
+    //    while(left <= right)
+    //    {
+    //        temp ^= arr[left];
+    //        left++;
+    //    }
+    //    result.Add(temp);
+    //}
+    //return result.ToArray();
+
+    int[] prefixXor = new int[arr.Length];
+    prefixXor[0] = arr[0];
+    for (int i = 1; i < arr.Length; i++)
+    {
+        prefixXor[i] = prefixXor[i - 1] ^ arr[i];
+    }
+    List<int> result = new();
+    foreach (var item in queries)
+    {
+        if(item[0] != 0)
+        {
+            result.Add(prefixXor[item[1]] ^ prefixXor[item[0] - 1]); 
+        }
+        else
+        {
+            result.Add(prefixXor[item[1]]);
+        }
+    }
+    return result.ToArray();
+}
+
+var arr = new int[] { 1, 3, 4, 8 };
+var queries = new int[][] {
+   new int[]{0,1 },
+   new int[]{1,2 },
+   new int[]{0,3 },
+   new int[]{3,3 }, };
