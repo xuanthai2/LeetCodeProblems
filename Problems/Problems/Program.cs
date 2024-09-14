@@ -2092,9 +2092,25 @@ int[] XorQueries(int[] arr, int[][] queries)
     return result.ToArray();
 }
 
-var arr = new int[] { 1, 3, 4, 8 };
-var queries = new int[][] {
-   new int[]{0,1 },
-   new int[]{1,2 },
-   new int[]{0,3 },
-   new int[]{3,3 }, };
+
+
+//2419. Longest Subarray With Maximum Bitwise AND
+int LongestSubarray(int[] nums)
+{
+    var x = nums.Max();
+    int length = 0;
+    int result = 0;
+    for (int i = 0; i < nums.Length; i++)
+    {
+        if (nums[i]==x)
+        {
+            length++;
+        }
+        else
+        {
+            length = 0;
+        }
+        result = Math.Max(length, result);
+    }
+    return result;
+}
