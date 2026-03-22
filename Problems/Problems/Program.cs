@@ -2114,3 +2114,42 @@ int LongestSubarray(int[] nums)
     }
     return result;
 }
+
+
+
+//3643. Flip Square Submatrix Vertically
+int[][] ReverseSubmatrix(int[][] grid, int x, int y, int k)
+{
+    int length = y + k;
+    int mid = x + k / 2;
+    int e_cal = 2 * mid;
+    int o_cal = 2 * mid - 1;
+    int temp = 0;
+    if (k % 2 == 0)
+    {
+        for (int i = x; i < mid; i++)
+        {
+            for (int j = y; j < length; j++)
+            {
+                temp = grid[i][j];
+                grid[i][j] = grid[o_cal - i][j];
+                grid[o_cal - i][j] = temp;
+            }
+        }
+        return grid;
+    }
+    else
+    {
+        for (int i = x; i < mid; i++)
+        {
+            for (int j = y; j < length; j++)
+            {
+                temp = grid[i][j];
+                grid[i][j] = grid[e_cal - i][j];
+                grid[e_cal - i][j] = temp;
+            }
+        }
+        return grid;
+    }
+
+}
