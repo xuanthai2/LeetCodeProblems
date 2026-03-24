@@ -2153,3 +2153,38 @@ int[][] ReverseSubmatrix(int[][] grid, int x, int y, int k)
     }
 
 }
+
+
+
+//1886. Determine Whether Matrix Can Be Obtained By Rotation
+bool FindRotation(int[][] mat, int[][] target) {
+    var length = mat.GetLength(0);
+    for(int i = 0; i<4; i++)
+    {
+        var equal = true;
+        for(int j=0;j<length; j++)
+        {
+            for(int k = 0 k<length && equal; k++)
+            {
+                if(mat[j][k] != target[j][k])
+                {
+                    equal = false;
+                    break;
+                }
+            }
+        }
+        if (equal) return true;
+        for(int j = 0;j<length; j++)
+        {
+            for(int k = j + 1; k<length; k++)
+            {
+                (mat[j][k],mat[k][j]) = (mat[k][j],mat[j][k]);
+            }
+        }
+            for (int j =0;j<length;j++)
+            {
+                Array.Reverse(mat[j]);
+            }
+    }
+    return false;
+}
